@@ -173,3 +173,11 @@ cython_debug/
 # Large data file
 data/
 models/
+
+# Ignore all files in large-files directory
+/large-files/*
+
+# Ignore large file types (e.g., .tar, .zip, .h5)
+/large-files/*.pth
+/large-files/*.tar
+/large-files/*.h5
