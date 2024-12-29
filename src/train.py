@@ -39,7 +39,7 @@ def train_one_epoch(model, train_loader, optimizer, criterion, device, epoch, ep
         optimizer.step()
 
         # Logging
-        log_message = f'Epoch [{epoch}/{epochs}], Step [{batch_idx}/{len(train_loader)}], Loss: {loss.item()}'
+        log_message = f'Epoch [{epoch}/{epochs}], Step [{batch_idx}/{len(train_loader)}], MSE Loss: {loss.item()}'
         print(log_message)
         
         # Save log message to file
