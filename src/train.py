@@ -17,8 +17,8 @@ def save_model(model, model_path, s3_client, s3_bucket, artifacts_s3_folder):
     print(f'Model artifact saved to S3 at: s3://{s3_bucket}/{artifacts_s3_folder}/{os.path.basename(model_path)}')
 
 def save_logs(log_file_local, s3_client, s3_bucket, logs_s3_folder):
-    s3_client.upload_file(log_file_local, s3_bucket, os.path.join(logs_s3_folder, 'training_log_1.txt'))
-    print(f'Logs saved to S3 at: s3://{s3_bucket}/{logs_s3_folder}/training_log_1.txt')
+    s3_client.upload_file(log_file_local, s3_bucket, os.path.join(logs_s3_folder, 'training_log_1.log'))
+    print(f'Logs saved to S3 at: s3://{s3_bucket}/{logs_s3_folder}/training_log_1.log')
 
 def train_one_epoch(model, train_loader, optimizer, criterion, device, epoch, epochs, log_file_local):
     model.train()
@@ -80,7 +80,7 @@ def train(model_class, input_channels, output_channels, batch_size, epochs, lear
     # Initialize log and model paths
     log_dir = logs_dir
     os.makedirs(log_dir, exist_ok=True)
-    log_file_local = os.path.join(log_dir, 'training_log_1.txt')
+    log_file_local = os.path.join(log_dir, 'training_log_1.log')
     open(log_file_local, 'w').close()
 
     model = setup_model(model_class, input_channels, output_channels, device)
@@ -98,7 +98,7 @@ def train(model_class, input_channels, output_channels, batch_size, epochs, lear
         train_one_epoch(model, train_loader, optimizer, criterion, device, epoch, epochs, log_file_local)
 
     # Saving and uploading artifacts
-    model_file_local = '/opt/ml/model/unet_v1.pth'  # Saving model to the model directory
+    model_file_local = '/opt/ml/model/cae_v1.pth'  # Saving model to the model directory
     save_model(model, model_file_local, s3_client, s3_bucket, artifacts_s3_folder)
     save_logs(log_file_local, s3_client, s3_bucket, logs_s3_folder)
 

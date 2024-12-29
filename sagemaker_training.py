@@ -10,7 +10,7 @@ role = "arn:aws:iam::867718131774:role/SageMaker_train"
 # Define the PyTorch estimator
 estimator = PyTorch(
     entry_point='script.py',  # The training script
-    source_dir='/src',       # Directory containing your scripts
+    source_dir='./src',       # Directory containing your scripts
     role=role,
     framework_version='2.0.1',  # Adjust according to your PyTorch version
     py_version='py310',           # Python version, adjust as needed
