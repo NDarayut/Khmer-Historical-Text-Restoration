@@ -173,6 +173,7 @@ cython_debug/
 # Large data file
 data/
 models/
+src/data_preprocessing/binarized_results/
 
 # Ignore all files in large-files directory
 /large-files/*
