@@ -1,32 +1,24 @@
 import sagemaker
 from sagemaker.pytorch import PyTorch
-from sagemaker import get_execution_role
-import os
 
-def create_sagemaker_estimator():
-    role = get_execution_role()
+# Set up the SageMaker session
+sagemaker_session = sagemaker.Session()
 
-    # Set up the SageMaker PyTorch Estimator
-    estimator = PyTorch(
-        entry_point="src/train.py",           # Training script to execute
-        source_dir=".",                       # Directory with your code
-        role=role,                            # IAM role
-        instance_type="ml.p3.2xlarge",        # GPU instance type (adjust as needed)
-        instance_count=1,                     # Number of instances
-        framework_version="1.10",             # PyTorch version
-        py_version="py38",                    # Python version
-        script_mode=True,                     # Running the training script in script mode
-        hyperparameters={                     # Optional: Include hyperparameters here
-            'batch_size': 64,
-            'epochs': 10,
-        },
-        dependencies=["requirements.txt"],     # Dependencies to install in the training container
-    )
-    
-    return estimator
+# Get the execution role
+role = "arn:aws:iam::867718131774:role/SageMaker_train"
 
-if __name__ == "__main__":
-    estimator = create_sagemaker_estimator()
+# Define the PyTorch estimator
+estimator = PyTorch(
+    entry_point='script.py',  # The training script
+    source_dir='/src',       # Directory containing your scripts
+    role=role,
+    framework_version='2.0.1',  # Adjust according to your PyTorch version
+    py_version='py310',           # Python version, adjust as needed
+    instance_count=1,
+    instance_type='ml.p3.2xlarge',  # GPU instance
+    output_path='s3://khmer-historical-manuscript/output/',  # Output location for model artifacts
+    sagemaker_session=sagemaker_session
+)
 
-    # Submit the training job
-    estimator.fit(wait=True)
+# Start the training job
+estimator.fit({'training': 's3://khmer-historical-manuscript/train'})
