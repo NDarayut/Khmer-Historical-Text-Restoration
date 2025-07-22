@@ -182,3 +182,11 @@ src/data_preprocessing/binarized_results/
 /large-files/*.pth
 /large-files/*.tar
 /large-files/*.h5
+
+/documents
+
+/data
+
+/Reference
+
+/config
