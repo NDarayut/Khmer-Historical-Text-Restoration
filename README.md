@@ -79,7 +79,7 @@ To get a local copy up and running, follow these simple steps.
 
 ### Prerequisites
 
-* Python (version 3.11.x)
+* Python (version 3.11.X)
 * pip
 
 ### Installation
@@ -116,4 +116,4 @@ python test.py
 This research utilizes the SleukRith Set, a publicly available dataset of Khmer palm leaf manuscripts compiled from original digitization efforts and existing digital archives. The dataset comprises 657 annotated manuscript pages and includes three types of data: isolated character images, annotated word datasets, and line segmentation ground truth. The dataset and the accompanying annotation tool are openly accessible at: https://github.com/donavaly/SleukRith-Set. 
 
 ## License
-Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+Distributed under the MIT License. See LICENSE for more information. (If you have a LICENSE file in your repository, otherwise specify your chosen license).
