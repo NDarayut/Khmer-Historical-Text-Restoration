@@ -48,7 +48,7 @@ To get a local copy up and running, follow these simple steps.
 
 ### Prerequisites
 
-* Python (version X.X)
+* Python (version 3.11.X)
 * pip
 
 ### Installation
