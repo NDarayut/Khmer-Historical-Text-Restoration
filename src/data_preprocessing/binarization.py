@@ -78,10 +78,10 @@ if __name__ == "__main__":
 
     # Dictionary of binarization methods
     methods = {
-        "Otsu's Method": otsu_binarization,
-        "Niblack's Method": lambda img: niblack_binarization(img, window_size=49, k=-0.25),
+        "Otsu's Method": otsu_binarization(img),
+        #"Niblack's Method": lambda img: niblack_binarization(img, window_size=49, k=-0.25),
         "Sauvola's Method": lambda img: sauvola_binarization(img, window_size=49, k=0.25),
-        "Bernsen's Method": lambda img: bernsen_binarization(img, window_size=49, delta=10)
+        #"Bernsen's Method": lambda img: bernsen_binarization(img, window_size=49, delta=10)
     }
 
     binarize_folder(input_folder, output_folder, methods)
